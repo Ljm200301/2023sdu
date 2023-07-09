@@ -12,7 +12,6 @@
 
 | 项目编号     | 项目名称     | 对应文件夹     |
 | ------ | ------ | ------ |
-
 | Project1 | implement the naïve birthday attack of reduced SM3 | 行1单元格3 |
 | Project2 | implement the Rho method of reduced SM3 | 行2单元格3 |
 | Project3 | implement length extension attack for SM3, SHA256, etc. | 行3单元格3 |
