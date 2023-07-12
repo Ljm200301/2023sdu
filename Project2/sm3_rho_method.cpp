@@ -21,7 +21,7 @@ void rho_method() {
     uint32_t out2_size = 0;
 
     RAND_bytes(data.data(), 32);
-    std::cout << "³õÊ¼ÖµÎª£º";
+    std::cout << "åˆå§‹å€¼ä¸ºï¼š";
     for (uint8_t c : data) {
         printf("%02X", c);
     }
@@ -42,26 +42,26 @@ void rho_method() {
         std::memcpy(&key2, out4.data(), COLLISION_BYTE);
 
         if (key1 == key2) {
-            std::cout << "ÒÑ¾­ÕÒµ½Åö×²£¡\n";
-            std::cout << "µÚÒ»¶ÎÏûÏ¢Îª£º";
+            std::cout << "å·²ç»æ‰¾åˆ°ç¢°æ’žï¼\n";
+            std::cout << "ç¬¬ä¸€æ®µæ¶ˆæ¯ä¸ºï¼š";
             for (uint8_t c : out1) {
                 printf("%02X", c);
             }
             printf("\n");
 
-            std::cout << "µÚÒ»¶ÎÏûÏ¢µÄ SM3 ¹þÏ£ÖµÎª£º";
+            std::cout << "ç¬¬ä¸€æ®µæ¶ˆæ¯çš„ SM3 å“ˆå¸Œå€¼ä¸ºï¼š";
             for (uint8_t c : out3) {
                 printf("%02X", c);
             }
             printf("\n");
 
-            std::cout << "µÚ¶þ¶ÎÏûÏ¢Îª£º";
+            std::cout << "ç¬¬äºŒæ®µæ¶ˆæ¯ä¸ºï¼š";
             for (uint8_t c : out2) {
                 printf("%02X", c);
             }
             printf("\n");
 
-            std::cout << "µÚ¶þ¶ÎÏûÏ¢µÄ SM3 ¹þÏ£ÖµÎª£º";
+            std::cout << "ç¬¬äºŒæ®µæ¶ˆæ¯çš„ SM3 å“ˆå¸Œå€¼ä¸ºï¼š";
             for (uint8_t c : out4) {
                 printf("%02X", c);
             }
@@ -85,7 +85,7 @@ int main() {
     rho_method();
     QueryPerformanceCounter(&t2);
 
-    std::cout << "²éÕÒÅö×²µÄÊ±¼äÎª£º" << (long double)(t2.QuadPart - t1.QuadPart) / (long double)tc.QuadPart << "Ãë\n";
+    std::cout << "æŸ¥æ‰¾ç¢°æ’žçš„æ—¶é—´ä¸ºï¼š" << (long double)(t2.QuadPart - t1.QuadPart) / (long double)tc.QuadPart << "ç§’\n";
 
     return 0;
 }
