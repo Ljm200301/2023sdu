@@ -27,5 +27,6 @@ uint64_t merkle_tree::get_num_nodes()：此函数返回Merkle树中的节点总�
 bool merkle_tree::consistency_proof(merkle_tree* old_tree)：此函数检查新的Merkle树是否与旧的Merkle树一致。如果需要，它首先更新两个树，然后计算旧树中与新树相同的最后一个节点的索引。然后验证旧树和新树在该节点处的哈希值是否匹配，并验证两个树在根节点处的哈希值是否匹配。如果两个检查都通过，则该函数返回true。
 # 实现效果
 <div align="center">
-  <img src="[https://github.com/Ljm200301/ljm/blob/main/pictures/merkle_tree.png)https://github.com/Ljm200301/ljm/blob/main/pictures/merkle_tree.png]>
+  <img src="https://github.com/Ljm200301/ljm/blob/main/pictures/merkle_tree.png">
 </div>
+
