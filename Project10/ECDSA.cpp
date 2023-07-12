@@ -5,11 +5,11 @@
 #include <cassert>
 #include <iomanip> 
 #include<windows.h>
-//ÀûÓÃopenssl 1.1ÊµÏÖ
+//åˆ©ç”¨openssl 1.1å®ç°
 #pragma comment(lib,"libssl.lib")
 #pragma comment(lib,"libcrypto.lib")
 
-//Éú³ÉECDSAÃÜÔ¿¶Ô
+//ç”ŸæˆECDSAå¯†é’¥å¯¹
 void GenerateKeys(EC_KEY*& eckey)
 {
     bool success(true);
@@ -44,7 +44,7 @@ void GenerateKeys(EC_KEY*& eckey)
     }
 }
 
-// Ê¹ÓÃ ECDSA Ë½Ô¿À´Ç©Ãû
+// ä½¿ç”¨ ECDSA ç§é’¥æ¥ç­¾å
 bool ecdsaSign(const std::string& message, EC_KEY* private_key, std::string& signature)
 {
     if (!private_key)
@@ -53,13 +53,13 @@ bool ecdsaSign(const std::string& message, EC_KEY* private_key, std::string& sig
         return false;
     }
 
-    // ¶ÔÏûÏ¢½øĞĞ¹şÏ£
+    // å¯¹æ¶ˆæ¯è¿›è¡Œå“ˆå¸Œ
     const unsigned char* hash = reinterpret_cast<const unsigned char*>(message.c_str());
     unsigned int hash_len = static_cast<unsigned int>(message.size());
     unsigned char digest[SHA256_DIGEST_LENGTH];
     SHA256(hash, hash_len, digest);
 
-    // Ê¹ÓÃ ECDSA Ç©Ãû
+    // ä½¿ç”¨ ECDSA ç­¾å
     ECDSA_SIG* sig = ECDSA_do_sign(digest, SHA256_DIGEST_LENGTH, private_key);
     if (!sig)
     {
@@ -67,7 +67,7 @@ bool ecdsaSign(const std::string& message, EC_KEY* private_key, std::string& sig
         return false;
     }
 
-    // ½«Ç©Ãû±àÂëÎª DER ×Ö½ÚĞòÁĞ
+    // å°†ç­¾åç¼–ç ä¸º DER å­—èŠ‚åºåˆ—
     int der_len = i2d_ECDSA_SIG(sig, nullptr);
     if (der_len <= 0)
     {
@@ -84,7 +84,7 @@ bool ecdsaSign(const std::string& message, EC_KEY* private_key, std::string& sig
         return false;
     }
 
-    // ½« DER ×Ö½ÚĞòÁĞ×ª»»Îª×Ö·û´®
+    // å°† DER å­—èŠ‚åºåˆ—è½¬æ¢ä¸ºå­—ç¬¦ä¸²
     signature.assign(reinterpret_cast<const char*>(der.data()), der.size());
 
     ECDSA_SIG_free(sig);
@@ -99,11 +99,11 @@ bool ecdsaVerify(const std::string& message, const std::string& signature, EC_KE
         return false;
     }
 
-    // ¶ÔÏûÏ¢½øĞĞ¹şÏ££¬×¢ÒâÕâÀïÊ¹ÓÃÁËÖ¸ÕëºÍ³¤¶È²ÎÊıÀ´±ÜÃâÖØ¸´¼ÆËã¹şÏ£Öµ
+    // å¯¹æ¶ˆæ¯è¿›è¡Œå“ˆå¸Œï¼Œæ³¨æ„è¿™é‡Œä½¿ç”¨äº†æŒ‡é’ˆå’Œé•¿åº¦å‚æ•°æ¥é¿å…é‡å¤è®¡ç®—å“ˆå¸Œå€¼
     unsigned char digest[SHA256_DIGEST_LENGTH];
     SHA256(reinterpret_cast<const unsigned char*>(message.c_str()), message.size(), digest);
 
-    // ½«Ç©Ãû×Ö·û´®½âÂëÎª DER ×Ö½ÚĞòÁĞ£¬×¢ÒâÕâÀïÊ¹ÓÃÁËÖ¸ÕëºÍ³¤¶È²ÎÊıÀ´±ÜÃâ¿½±´Ç©Ãû×Ö·û´®µÄÄÚÈİ
+    // å°†ç­¾åå­—ç¬¦ä¸²è§£ç ä¸º DER å­—èŠ‚åºåˆ—ï¼Œæ³¨æ„è¿™é‡Œä½¿ç”¨äº†æŒ‡é’ˆå’Œé•¿åº¦å‚æ•°æ¥é¿å…æ‹·è´ç­¾åå­—ç¬¦ä¸²çš„å†…å®¹
     const unsigned char* der_data = reinterpret_cast<const unsigned char*>(signature.c_str());
     ECDSA_SIG* sig = d2i_ECDSA_SIG(nullptr, &der_data, signature.size());
     if (!sig)
@@ -112,7 +112,7 @@ bool ecdsaVerify(const std::string& message, const std::string& signature, EC_KE
         return false;
     }
 
-    // ÑéÖ¤Ç©Ãû
+    // éªŒè¯ç­¾å
     int result = ECDSA_do_verify(digest, SHA256_DIGEST_LENGTH, sig, public_key);
     ECDSA_SIG_free(sig);
     if (result == 1)
@@ -182,7 +182,7 @@ int main()
     std::cout << "Signature: " << std::endl;
     std::cout << "r = " << BN_bn2hex(r_bn) << std::endl;
     std::cout << "s = " << BN_bn2hex(s_bn) << std::endl;
-    std::cout << "Sign time£º" << ((long double)(t2.QuadPart - t1.QuadPart) / (long double)tc.QuadPart) * 1000 << "ms\n";
+    std::cout << "Sign timeï¼š" << ((long double)(t2.QuadPart - t1.QuadPart) / (long double)tc.QuadPart) * 1000 << "ms\n";
 
     ECDSA_SIG_free(norm_sig);
 
