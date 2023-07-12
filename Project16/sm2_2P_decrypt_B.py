@@ -20,7 +20,7 @@ client_socket, address = server_socket.accept()
 print("Connection is established!")
 
 
-# 接收签名者发送的 T1
+# 接收A发送的 T1
 T1_bytes = client_socket.recv(1024)
 d2_len = struct.unpack('<I', client_socket.recv(4))[0]
 d2_bytes = client_socket.recv(d2_len)
