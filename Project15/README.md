@@ -4,7 +4,7 @@
   <img src="https://github.com/Ljm200301/ljm/blob/main/pictures/SM21.png">
 </div>
 
-**对A(服务端)**  
+**服务端 A 实现过程：**  
 生成待签名数据 Z 和 M。  
 创建 CryptSM2 类的一个实例。  
 等待来自客户端的连接请求。  
@@ -16,7 +16,7 @@
 使用 d1 计算私钥，并使用计算出的私钥和接收到的签名值进行验证。  
 关闭连接。
 
-**对B(客户端)**
+**客户端 B 实现过程：**  
 导入 socket 和 CryptSM2 模块，以及 gmssl 库中的 sm3 和 func 函数。  
 创建一个 CryptSM2 类的对象 sm2_crypt，用于进行 SM2 加密和签名操作。  
 建立与服务器的连接，使用 socket 模块的 socket 函数创建一个套接字对象 client_socket，并使用 connect 方法连接服务器。  
@@ -31,3 +31,10 @@
 
 # 实现效果
 
+<div align="center">
+  <img src="https://github.com/Ljm200301/ljm/blob/main/pictures/SM2_Sign_2P_A.png">
+</div>
+
+<div align="center">
+  <img src="https://github.com/Ljm200301/ljm/blob/main/pictures/SM2_Sign_2P_B.png">
+</div>
