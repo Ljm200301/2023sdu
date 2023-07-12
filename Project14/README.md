@@ -10,10 +10,34 @@ PGP是一个加密软件套件，使用混合加密方法以保护数据的机�
 </div>
 
 在具体代码中，定义了一个generate_key函数，用于生成随机的16字节（128位）会话密钥。  
+```python
+def generate_key():
+    key = secrets.token_bytes(16)
+    return key.hex()
+```
 调用generate_key函数生成一个随机的会话密钥，并使用SM4算法对明文进行加密，得到密文。  
-使用SM2算法对会话密钥进行加密，得到加密后的会话密钥。  
+```python
+key = generate_key().encode()
+crysm4 = sm4.CryptSM4()
+crysm4.set_key(key, sm4.SM4_ENCRYPT)
+plaintext = 'Liujiaming'
+ciphertext = crysm4.crypt_ecb(plaintext.encode())
+```
+使用SM2算法对会话密钥进行加密，得到加密后的会话密钥。
+```python
+sm2crypt = sm2.CryptSM2(public_key=public_key, private_key=private_key)
+enckey = sm2crypt.encrypt(key)
+```
 使用SM2算法对加密后的会话密钥进行解密，得到原始的会话密钥。  
-使用原始的会话密钥对密文进行解密，得到明文。  
+```python 
+deckey = sm2crypt.decrypt(enckey)
+```
+使用原始的会话密钥对密文进行解密，得到明文。
+```python 
+crysm42 = sm4.CryptSM4()
+crysm42.set_key(deckey, sm4.SM4_DECRYPT)
+dectext = crysm42.crypt_ecb(ciphertext)
+```
 
 # 实现效果
 
