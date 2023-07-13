@@ -6,14 +6,14 @@ Rho方法的基本思路是选择一个随机数作为起点，然后使用哈�
 </div>
 
 在具体实现的过程中，使用了OpenSSL库提供的EVP_MD_CTX结构体和EVP_Digest函数来进行SM3哈希计算。**主要寻找碰撞的过程如下：**  
-定义了四个长度为32的unsigned char数组out1、out2、out3和out4，用于存储哈希函数的输出结果。  
-使用EVP_Digest函数对data数组进行SM3哈希计算，将结果存储在out1数组中。  
-使用EVP_Digest函数对out1数组进行SM3哈希计算，将结果存储在out2数组中。
-之后进入寻找碰撞过程：
-a. 使用EVP_Digest函数对out1数组进行SM3哈希计算，将结果存储在out3数组中。  
-b. 使用EVP_Digest函数对out2数组进行SM3哈希计算，将结果存储在out4数组中。  
-c. 从out3和out4数组中取出COLLISION_BYTE个字节作为哈希函数输出结果的前缀，如果这两个前缀相同，则表示找到了碰撞，输出碰撞的结果并跳出循环。  
-d. 将out3数组的内容复制到out1数组中，将out4数组的内容复制到out2数组中。  
+- 定义了四个长度为32的unsigned char数组out1、out2、out3和out4，用于存储哈希函数的输出结果。  
+- 使用EVP_Digest函数对data数组进行SM3哈希计算，将结果存储在out1数组中。  
+- 使用EVP_Digest函数对out1数组进行SM3哈希计算，将结果存储在out2数组中。
+- 之后进入寻找碰撞过程：
+  - 使用EVP_Digest函数对out1数组进行SM3哈希计算，将结果存储在out3数组中。  
+  -  使用EVP_Digest函数对out2数组进行SM3哈希计算，将结果存储在out4数组中。  
+  - 从out3和out4数组中取出COLLISION_BYTE个字节作为哈希函数输出结果的前缀，如果这两个前缀相同，则表示找到了碰撞，输出碰撞的结果并跳出循环。  
+  - 将out3数组的内容复制到out1数组中，将out4数组的内容复制到out2数组中。  
 # 实现效果
 **找到24bit的碰撞，如下图所示，最多可找到40bit的碰撞。**
 <div align="center">
