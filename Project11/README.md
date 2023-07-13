@@ -1,7 +1,7 @@
 # 实现方式：
 椭圆曲线上点的加法运算：    
 若 $P \neq Q$ ， $\lambda = ((y_2 - y_1) \cdot (x_2 - x_1)^{-1}) \mod p$ ， $x_3 = (\lambda^2 - x_1 - x_2) \mod p$ ， $y_3 = (\lambda \cdot (x_1 - x_3) - y_1) \mod p$ 。  
-若 $P = Q$ ， $\lambda = ((3 \cdot x_1^2 + a) \cdot (2 \cdot y_1)^{-1}) \mod p$ ， $x_3 = (\lambda^2 - 2 \cdot x_1) \mod p$ ，$y_3 = (\lambda \cdot (x_1 - x_3) - y_1) \mod p$ 
+若 $P = Q$ ， $\lambda = ((3 \cdot x_1^2 + a) \cdot (2 \cdot y_1)^{-1}) \mod p$ ， $x_3 = (\lambda^2 - 2 \cdot x_1) \mod p$ ， $y_3 = (\lambda \cdot (x_1 - x_3) - y_1) \mod p$ 
   。  
 椭圆曲线上点的标量倍乘：  
 将 $k$ 表示为二进制形式，从高位到低位依次处理，若第 $i$ 位为1，则将点 $P$ 与 $2^{i-1}$ 倍点相加：  
