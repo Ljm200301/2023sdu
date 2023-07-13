@@ -3,12 +3,10 @@
 - 记住的密码不会因为修改表单属性而消失，即使其他同域名下的表单属性发生改变，记住的密码依然会显示。
 - 在显示表单数据时，按照先name后id的规则显示，同name或同id的input先取相同name的记住值，后取相同id的记住值。
 如被记住的input为
-
-'''
+```
 <input type="text" name="user1" id="user1" >
 <input type="text" name="user2" id="user2" >
-'''
-
+```
 现其他页面有input如下：
 ```
 <input type="text" name="user1" id="user2" > //显示的是上面第一个，既name 为 user1， id 为user1 的input记住值
@@ -19,31 +17,30 @@
 - type=password的DOM上面最近的input默认被Chrome认为是password的用户名，记住密码的原理是按照域名+user+password的形式记住的。
 - 即使主表单是被记住的，如果主表单没有name或id，后期依然不能显示，但被记住的密码在其他同站点下表单同类型的input会显示。
 如 主表单 index.html 即便只有user 没有name 和id ，password框有name，也会如此
-
-'''
+```
 <input type="text" placeholder="user"> //记住后不显示
 <input type="Password" name="psd" placeholder="Password"> //记住后不显示
-'''
+```
 
 附表单 password.html
-'''
+```
 <input type="password" name="passworpooo" id="r" class="form-control" placeholder="456446">//记住后显示
-'''
+```
 
 - 每次修改代码需要清空所有缓存及记住的密码，否则会出现修改了代码但依然显示记住的密码的情况。
 - 类型不同但name或id相同的表单域也会显示记住的值，例如email类型的输入框实际上可能是text类型，在自动填充时会按照name或id的匹配来填充值。
 如：主表单 index.html
-'''
+```
 <input type="email" name="user" placeholder="Email">
 <input type="text" name="user1231" placeholder="user">
 <input type="Password" name="psw1231" placeholder="Password">
-'''
+```
 附表单 email.html
-'''
+```
 <input type="text" name="user"> //显示
 <input type="email" name="user" id="Email2">//显示
 <input type="email" id="user">//显示
-'''
+```
 当主表单被记住后， email.html 中第一个input双击后，依然显示了主表单记住的内容
 - 记住密码不同于其他输入域的自动填充，没有弹窗选择记住密码，而是自动记住并隐藏，不会显示在表单中。
 
