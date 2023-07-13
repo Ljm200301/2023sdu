@@ -31,7 +31,7 @@ SM2签名算法：
 
 计算椭圆曲线上的点 $(x_2, y_2) = k \cdot P_a$ ，将 $(x_2, y_2)$ 转换为二进制字符串 $x_{2bin}$和$y_{2bin}$ 。
 
-调用KDF函数，从 $(x_{2bin} + y_{2bin})$ 生成一个长度为 $\operatorname{len}(m_{bin})$ 的二进制字符串 $t$ 。
+调用KDF函数，从 $(x_{2bin} + y_{2bin})$ 生成一个长度为 $4\lceil \frac{|m|}{4} \rceil$ 的二进制字符串 $t$ 。
 
 将 $m_{bin}$ 与 $t$ 进行异或运算，得到密文 $c_2$ 。
 
