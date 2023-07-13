@@ -4,7 +4,7 @@
 **项目由本人独立完成,包括通过温老师评估的信安赛报告和若干Project**
 
 # 已完成项目
-| 项目编号     | 项目名称     | 项目报告     | 对应文件夹   |
+| 项目编号     | 项目名称     | 项目报告     | 代码及报告对应文件夹   |
 | ------ | ------ | ------ |------ |
 | Project1 | implement the naïve birthday attack of reduced SM3 |  Peoject2报告  |行1单元格3 |
 | Project2 | implement the Rho method of reduced SM3 |  [Peoject2报告](https://github.com/Ljm200301/2023sdu/blob/main/Project2/README.md) | [Rho method of reduced SM3](https://github.com/Ljm200301/2023sdu/edit/main/Project2) |
