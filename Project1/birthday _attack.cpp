@@ -6,35 +6,34 @@
 
 using namespace std;
 
-#define uint unsigned int
 
 const int Collisionlen = 16;
 
 #define F(x,c) (x*x)
 
-int Pollard_Rho(uint image, unsigned char* H, uint c, uint* preiamge) //H = SM3(image) 
+int Pollard_Rho(uint32_t image, unsigned char* H, uint32_t c, uint32_t* preiamge) //H = SM3(image) 
 {
-    uint m1 = rand();
-    uint m2 = m1;
+    uint32_t m1 = rand();
+    uint32_t m2 = m1;
     while (true)
     {
         m1 = F(m1, c);
         m2 = F(F(m2, c), c);
         if (m2 == m1)
             return 1;
-        uint tmp = m2 - m1;
+        uint32_t tmp = m2 - m1;
         string input = to_string(tmp).c_str();
         unsigned char output[SM3_OUTLEN];
         SM3(input, output);
 
-        // Ö±½ÓÔÚwhileÑ­»·ÖĞ±È½Ï¹şÏ£ÖµµÄÇ°CollisionlenÎ»
-        uint a = *(int*)H;
-        uint b = *(int*)output;
-        uint mask = (int)pow(2, Collisionlen) - 1;
+        // ç›´æ¥åœ¨whileå¾ªç¯ä¸­æ¯”è¾ƒå“ˆå¸Œå€¼çš„å‰Collisionlenä½
+        uint32_t a = *(int*)H;
+        uint32_t b = *(int*)output;
+        uint32_t mask = (int)pow(2, Collisionlen) - 1;
         if ((a & mask) == (b & mask) && tmp != image)
         {
             *preiamge = tmp;
-            cout << "ÕÒµ½Ò»×éÅö×²£º" << endl;
+            cout << "æ‰¾åˆ°ä¸€ç»„ç¢°æ’ï¼š" << endl;
             cout << "SM3(" << image << ") = ";
             print_Hashvalue(H, SM3_OUTLEN);
             cout << "SM3(" << tmp << ") = ";
@@ -44,17 +43,17 @@ int Pollard_Rho(uint image, unsigned char* H, uint c, uint* preiamge) //H = SM3(
     }
 }
 
-void PreimageAttack(uint image)
+void PreimageAttack(uint32_t image)
 {
-    uint preimage;
+    uint32_t preimage;
     string image_input = to_string(image);
     unsigned char image_output[SM3_OUTLEN];
     SM3(image_input, image_output);
-    cout << "ÒªÑ°ÕÒµÄÔ­Ïñ£º" << image << endl;
+    cout << "è¦å¯»æ‰¾çš„åŸåƒï¼š" << image << endl;
     cout << "SM3(" << image << ") = ";
     print_Hashvalue(image_output, SM3_OUTLEN);
 
-    uint c = rand();
+    uint32_t c = rand();
 
     clock_t start_time = clock();
     while (Pollard_Rho(image, image_output, c, &preimage))
@@ -64,9 +63,9 @@ void PreimageAttack(uint image)
     clock_t end_time = clock();
 
     cout << endl;
-    cout << "ÕÒµ½Åö×²ËùÓÃµÄËæ»úÊı c = " << c << endl;
-    cout << "ÕÒµ½µÄÔ­Ïñ£º" << preimage << endl;
-    cout << "Ñ°ÕÒÅö×²»¨·ÑÊ±¼ä£ºtime = " << double(end_time - start_time) / CLOCKS_PER_SEC << "s" << endl;
+    cout << "æ‰¾åˆ°ç¢°æ’æ‰€ç”¨çš„éšæœºæ•° c = " << c << endl;
+    cout << "æ‰¾åˆ°çš„åŸåƒï¼š" << preimage << endl;
+    cout << "å¯»æ‰¾ç¢°æ’èŠ±è´¹æ—¶é—´ï¼štime = " << double(end_time - start_time) / CLOCKS_PER_SEC << "s" << endl;
 }
 
 int main()
