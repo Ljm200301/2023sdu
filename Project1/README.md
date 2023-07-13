@@ -11,4 +11,7 @@
 
 在 PreimageAttack 函数中，先生成一个随机数作为要寻找原像的哈希值，然后调用 Pollard_Rho 函数来寻找这个哈希值的原像。如果找到了原像，则输出找到的原像和找到碰撞所用的时间。如果没有找到原像，则继续生成新的随机数进行尝试。  
 # 实现效果
+<div align="center">
+  <img src="https://github.com/Ljm200301/ljm/blob/main/pictures/birthday _attack.png">
+</div>
 
