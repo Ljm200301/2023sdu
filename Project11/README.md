@@ -69,4 +69,12 @@ SM2签名算法：
 其中， $d_a$ 为私钥， $G$ 为椭圆曲线上的基点， $a$ 、 $b$ 和 $p$ 为椭圆曲线的参数。
 
 # 实现效果
+### SM2加密
+<div align="center">
+  <img src="https://github.com/Ljm200301/ljm/blob/main/pictures/SM2_Enc.jpg">
+</div>
 
+### SM2签名
+<div align="center">
+  <img src="https://github.com/Ljm200301/ljm/blob/main/pictures/SM2_Sign.png">
+</div>
