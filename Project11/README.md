@@ -1,8 +1,9 @@
 # 实现方式：
-椭圆曲线上点的加法运算：  
+椭圆曲线上点的加法运算：    
 若 $P \neq Q$ ， $\lambda = ((y_2 - y_1) \cdot (x_2 - x_1)^{-1}) \mod p$ ， $x_3 = (\lambda^2 - x_1 - x_2) \mod p$ ， $y_3 = (\lambda \cdot (x_1 - x_3) - y_1) \mod p$ 。  
-若 $P = Q$ ， $\lambda = ((3 \cdot x_1^2 + a) \cdot (2 \cdot y_1)^{-1}) \mod p$ ， $x_3 = (\lambda^2 - 2 \cdot x_1) \mod p$ ，$y_3 = (\lambda \cdot (x_1 - x_3) - y_1) \mod p$  。  
-椭圆曲线上点的标量倍乘：
+若 $P = Q$ ， $\lambda = ((3 \cdot x_1^2 + a) \cdot (2 \cdot y_1)^{-1}) \mod p$ ， $x_3 = (\lambda^2 - 2 \cdot x_1) \mod p$ ，$y_3 = (\lambda \cdot (x_1 - x_3) - y_1) \mod p$ 
+  。  
+椭圆曲线上点的标量倍乘：  
 将 $k$ 表示为二进制形式，从高位到低位依次处理，若第 $i$ 位为1，则将点 $P$ 与 $2^{i-1}$ 倍点相加：  
 $$Q = kP = \sum_{i=0}^{n-1} k_i2^iP$$  
 其中， $k_i$ 为 $k$ 的二进制表示的第 $i$ 位， $n$ 为 $k$ 的二进制表示的位数。
@@ -29,7 +30,7 @@ SM2签名算法：
 
 计算公钥 $P_a = d_a \cdot G$ ，其中 $d_a$ 为私钥。
 
-计算椭圆曲线上的点 $(x_2, y_2) = k \cdot P_a$ ，将 $(x_2, y_2)$ 转换为二进制字符串 $x_{2bin}$和$y_{2bin}$ 。
+计算椭圆曲线上的点 $(x_2, y_2) = k \cdot P_a$ ，将 $(x_2, y_2)$ 转换为二进制字符串 $x_{2bin}$和 $y_{2bin}$  。
 
 调用KDF函数，从 $(x_{2bin} + y_{2bin})$ 生成一个长度为 $4\lceil \frac{|m|}{4} \rceil$ 的二进制字符串 $t$ 。
 
