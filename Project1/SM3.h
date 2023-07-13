@@ -3,10 +3,9 @@
 #include <stdio.h>
 #include <iostream>
 using namespace std;
-typedef unsigned int uint;
-typedef unsigned char uchar;
 
-# define SM3_WORD uint  
+
+# define SM3_WORD uint32_t  
 # define SM3_OUTLEN    32  
 # define SM3_BLOCK  64      
 
@@ -24,9 +23,9 @@ typedef unsigned char uchar;
 
 typedef struct {
     SM3_WORD state[8];
-    uint msgLen;  
-    uint curlen; 
-    uchar buf[64];   
+    uint32_t msgLen;  
+    uint32_t curlen; 
+    uint8_t buf[64];   
 }SM3_CTX;
 
 
@@ -36,10 +35,10 @@ typedef struct {
                          l|=(((unsigned long)(*(c++)))    )           )
 
 
-#  define HOST_l2c(l,c) (*(c++)=(uchar)(((l)>>24)&0xff),      \
-                         *(c++)=(uchar)(((l)>>16)&0xff),      \
-                         *(c++)=(uchar)(((l)>> 8)&0xff),      \
-                         *(c++)=(uchar)(((l)    )&0xff),      \
+#  define HOST_l2c(l,c) (*(c++)=(uint8_t)(((l)>>24)&0xff),      \
+                         *(c++)=(uint8_t)(((l)>>16)&0xff),      \
+                         *(c++)=(uint8_t)(((l)>> 8)&0xff),      \
+                         *(c++)=(uint8_t)(((l)    )&0xff),      \
                          l)
 
 # define ROTATE(a,n)     (((a)<<(n))|((a&0xffffffff)>>(32-n)))
@@ -124,7 +123,7 @@ void SM3Init(SM3_CTX* ctx) {
     ctx->state[7] = SM3_H;
 }
 
-void SM3_W_expend(unsigned int W[68], unsigned int W1[64], const uchar* buf) {
+void SM3_W_expend(unsigned int W[68], unsigned int W1[64], const uint8_t* buf) {
     int i;
     for (i = 0; i < 16; i++)
         (void)HOST_c2l(buf, W[i]);
@@ -141,11 +140,11 @@ void SM3_W_expend(unsigned int W[68], unsigned int W1[64], const uchar* buf) {
 void SM3_compress(SM3_CTX* ctx) {
     unsigned int W[68];
     unsigned int W1[64];
-    SM3_W_expend(W, W1, (const uchar*)ctx->buf);
+    SM3_W_expend(W, W1, (const uint8_t*)ctx->buf);
     CF(W, W1, ctx->state);
 }
 
-void SM3_process(SM3_CTX* ctx, uchar* input, int msg_bytelen) {
+void SM3_process(SM3_CTX* ctx, uint8_t* input, int msg_bytelen) {
     while (msg_bytelen >= 64) {
         memcpy(ctx->buf, input + (int)(ctx->curlen >> 9), 64);
         msg_bytelen -= 64;
@@ -161,7 +160,7 @@ void SM3_process(SM3_CTX* ctx, uchar* input, int msg_bytelen) {
     }
     ctx->curlen = tmp;
 }
-void SM3_paddingpart(SM3_CTX* ctx, uchar* output)
+void SM3_paddingpart(SM3_CTX* ctx, uint8_t* output)
 {
     ctx->buf[ctx->curlen] = 0x80;
     ctx->curlen++;
@@ -183,7 +182,7 @@ void SM3_paddingpart(SM3_CTX* ctx, uchar* output)
         (void)HOST_l2c(ctx->state[i], output);
 }
 
-void SM3(uchar* input, int msg_bytelen, uchar output[SM3_OUTLEN])
+void SM3(uint8_t* input, int msg_bytelen, uint8_t output[SM3_OUTLEN])
 {
     SM3_CTX ctx;
     ctx.msgLen = ctx.curlen = 0;
@@ -200,7 +199,7 @@ void SM3(uchar* input, int msg_bytelen, uchar output[SM3_OUTLEN])
     memset(&ctx, 0, sizeof(SM3_CTX));
 }
 
-void print_Hashvalue(uchar buf[], int len)
+void print_Hashvalue(uint8_t buf[], int len)
 {
     int i;
     for (i = 0; i < len; i++)
@@ -212,13 +211,13 @@ void print_Hashvalue(uchar buf[], int len)
 
 void SM3(string input_str)
 {
-    uchar output[SM3_OUTLEN];
-    SM3((uchar*)input_str.c_str(), input_str.length(), output);
+    uint8_t output[SM3_OUTLEN];
+    SM3((uint8_t*)input_str.c_str(), input_str.length(), output);
     cout << "Hash:";
     print_Hashvalue(output, 32);
 }
 
-void SM3(string input_str, uchar output[SM3_OUTLEN])
+void SM3(string input_str, uint8_t output[SM3_OUTLEN])
 {
-    SM3((uchar*)input_str.c_str(), input_str.length(), output);
+    SM3((uint8_t*)input_str.c_str(), input_str.length(), output);
 }
