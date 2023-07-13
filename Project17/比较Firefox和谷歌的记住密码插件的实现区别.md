@@ -10,11 +10,10 @@
 '''
 
 现其他页面有input如下：
-
-'''
+```
 <input type="text" name="user1" id="user2" > //显示的是上面第一个，既name 为 user1， id 为user1 的input记住值
 <input type="text" name="user2" id="user1" > //显示的是上面第二个，既name 为 user2， id 为user2 的input记住值
-'''
+```
 
 - 对于type=password的input，Chrome不会弹出记住密码的弹窗，只有在跳转的下一个页面有password的input时才会自动填充密码。输入框内容是共享的，不受name和id的影响。
 - type=password的DOM上面最近的input默认被Chrome认为是password的用户名，记住密码的原理是按照域名+user+password的形式记住的。
