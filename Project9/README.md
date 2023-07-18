@@ -1,6 +1,12 @@
 # 实现方式
 ## AES
-AES（Advanced Encryption Standard）是一种对称加密算法，它使用相同的密钥对数据进行加密和解密。AES128 使用 128 位密钥对数据进行加密和解密，它的加密过程可以用以下公式表示：
+AES（Advanced Encryption Standard）是一种对称加密算法，它使用相同的密钥对数据进行加密和解密。
+
+<div align="center">
+  <img src="https://github.com/Ljm200301/ljm/blob/main/pictures/AES1.png">
+</div>
+
+AES128 使用 128 位密钥对数据进行加密和解密，它的加密过程可以用以下公式表示：
 ### 分组
 将明文数据按照128位一组进行分组，可以将每个分组表示为一个 $4 \times 4$ 的矩阵 $S$，其中 $S_{i,j}$ 表示矩阵中第 $i$ 行第 $j$ 列的元素。
 ### 密钥扩展
@@ -18,6 +24,9 @@ AddRoundKey：每个分组与对应的轮密钥进行按位异或运算。
 ### 解密
 解密过程与加密过程类似，只是轮密钥的顺序与加密过程相反。解密过程中需要执行 10 个轮函数，每个轮函数使用对应的轮密钥进行解密操作。  
 ## SM4
+<div align="center">
+  <img src="https://github.com/Ljm200301/ljm/blob/main/pictures/SM41.png">
+</div>
 ### 轮函数
 SM4算法的轮函数包括以下四个部分：  
 
