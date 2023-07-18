@@ -27,7 +27,8 @@ AddRoundKey：每个分组与对应的轮密钥进行按位异或运算。
 <div align="center">
   <img src="https://github.com/Ljm200301/ljm/blob/main/pictures/SM41.png">
 </div>
-### 轮函数
+
+### 轮函数 
 SM4算法的轮函数包括以下四个部分：  
 
 线性变换 $L$ ：将输入的32位数据进行一次线性变换，以增加加密的随机性。线性变换$L$采用了一种称为布尔函数的数学模型，并通过移位和异或运算实现
@@ -46,23 +47,23 @@ $$C=L(B)=B\oplus(B\gg2)\oplus(B\gg10)\oplus(B\gg18)\oplus(B\gg24)$$
 
 设输入为 $(X_{32},X_{33},X_{34},X_{35})$ ，则输出为 $(Y_0,Y_1,Y_2,Y_3)=R(X_{32},X_{33},X_{34},X_{35})=(X_{35},X_{34},X_{33},X_{32})$ 。
 ### 密钥生成
-SM4算法将128比特的加密密钥$K$扩展成32个32比特的轮密钥$rk_i (i=0,...,31)$，具体过程如下：
+SM4算法将128比特的加密密钥 $K$ 扩展成32个32比特的轮密钥 $rk_i (i=0,...,31)$ ，具体过程如下：
 
-计算系统参数$FK=(0xA3B1BAC6, 0x56AA3350, 0x677D9197, 0xB27022DC)$。
+计算系统参数 $FK=(0xA3B1BAC6, 0x56AA3350, 0x677D9197, 0xB27022DC)$ 。
 
-计算中间值$k=(k_0,k_1,k_2,k_3)=K\oplus FK$。
+计算中间值 $k=(k_0,k_1,k_2,k_3)=K\oplus FK$ 。
 
-对于每个$i\in{0,1,\dots,31}$，计算轮密钥$rk_i$，具体计算方式如下：
+对于每个 $i\in{0,1,\dots,31}$ ，计算轮密钥 $rk_i$ ，具体计算方式如下：
 
-(1) 计算中间值$B=k_{i+1}\oplus k_{i+2}\oplus k_{i+3}\oplus CK_i$，其中$CK_i=(CK_{i,0},CK_{i,1},CK_{i,2},CK_{i,3})$，$CK_{i,j}=(4i+j)\times7\mod 256$。
+(1) 计算中间值 $B=k_{i+1}\oplus k_{i+2}\oplus k_{i+3}\oplus CK_i$ ，其中 $CK_i=(CK_{i,0},CK_{i,1},CK_{i,2},CK_{i,3})$，$CK_{i,j}=(4i+j)\times7\mod 256$ 。
 
-(2) 计算线性变换$L^{\prime}(B)=B\oplus(B\gg13)\oplus(B\gg23)$。
+(2) 计算线性变换 $L^{\prime}(B)=B\oplus(B\gg13)\oplus(B\gg23)$ 。
 
-(3) 计算非线性变换$S(B)=(S(B_0),S(B_1),S(B_2),S(B_3))$，其中$B=(B_0,B_1,B_2,B_3)$，$S$为SM4算法中的S盒。
+(3) 计算非线性变换 $S(B)=(S(B_0),S(B_1),S(B_2),S(B_3))$ ，其中$B=(B_0,B_1,B_2,B_3)$， $S$ 为SM4算法中的S盒。
 
-(4) 计算轮密钥$rk_i=k_i\oplus L^{\prime}(S(k_{i+1}\oplus k_{i+2}\oplus k_{i+3}\oplus CK_i))$。
+(4) 计算轮密钥 $rk_i=k_i\oplus L^{\prime}(S(k_{i+1}\oplus k_{i+2}\oplus k_{i+3}\oplus CK_i))$ 。
 
-最终得到的$rk_i$序列就是SM4算法的32个轮密钥，用于加密和解密过程中的轮函数计算。
+最终得到的 $rk_i$ 序列就是SM4算法的32个轮密钥，用于加密和解密过程中的轮函数计算。
 # 实现效果
 
 <div align="center">
