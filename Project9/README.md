@@ -55,11 +55,11 @@ SM4算法将128比特的加密密钥 $K$ 扩展成32个32比特的轮密钥 $rk_
 
 对于每个 $i\in{0,1,\dots,31}$ ，计算轮密钥 $rk_i$ ，具体计算方式如下：
 
-(1) 计算中间值 $B=k_{i+1}\oplus k_{i+2}\oplus k_{i+3}\oplus CK_i$ ，其中 $CK_i=(CK_{i,0},CK_{i,1},CK_{i,2},CK_{i,3})$，$CK_{i,j}=(4i+j)\times7\mod 256$ 。
+(1) 计算中间值 $B=k_{i+1}\oplus k_{i+2}\oplus k_{i+3}\oplus CK_i$ ，其中 $CK_i=(CK_{i,0},CK_{i,1},CK_{i,2},CK_{i,3})$ ， $CK_{i,j}=(4i+j)\times7\mod 256$ 。
 
 (2) 计算线性变换 $L^{\prime}(B)=B\oplus(B\gg13)\oplus(B\gg23)$ 。
 
-(3) 计算非线性变换 $S(B)=(S(B_0),S(B_1),S(B_2),S(B_3))$ ，其中$B=(B_0,B_1,B_2,B_3)$， $S$ 为SM4算法中的S盒。
+(3) 计算非线性变换 $S(B)=(S(B_0),S(B_1),S(B_2),S(B_3))$ ，其中 $B=(B_0,B_1,B_2,B_3)$ ， $S$ 为SM4算法中的S盒。
 
 (4) 计算轮密钥 $rk_i=k_i\oplus L^{\prime}(S(k_{i+1}\oplus k_{i+2}\oplus k_{i+3}\oplus CK_i))$ 。
 
