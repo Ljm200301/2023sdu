@@ -8,11 +8,13 @@
 $$u, v \leftarrow \text{random}(1, n-1)$$
 
 计算出伪造签名的 $r$ 值，即 $\text{Add}(\text{Multi}(u, G), \text{Multi}(v, P))[0]$ ；
-$ $R_{\text{forge}} \leftarrow \text{Add}(\text{Multi}(u, G), \text{Multi}(v, P))$ $
-$$r_{\text{forge}} \leftarrow R_{\text{forge}}[0]$$
+
+$$ R_{\text{forge}} \leftarrow \text{Add}(\text{Multi}(u, G), \text{Multi}(v, P)) $$
+
+$$ r_{\text{forge}} \leftarrow R_{\text{forge}}[0] $$
 
 计算出与 $r$ 值对应的 $e$ 值，即 $(r_{\text{forge}} \cdot u \cdot \text{multi_inverse}(v, n)) \bmod n$；
-$$e_{\text{forge}} \leftarrow (r_{\text{forge}} \cdot u \cdot \text{multi_inverse}(v, n)) \bmod n$$
+$$ e_{\text{forge}} \leftarrow (r_{\text{forge}} \cdot u \cdot \text{multi_inverse}(v, n)) \bmod n $$
 
 计算出与 $e$ 值对应的 $s$ 值，即 $(u \cdot \text{multi_inverse}(v, n)) \bmod n$；
 $$s_{\text{forge}} \leftarrow (u \cdot \text{multi_inverse}(v, n)) \bmod n$$
