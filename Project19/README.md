@@ -9,7 +9,9 @@ $$u, v \leftarrow \text{random}(1, n-1)$$
 
 计算出伪造签名的 $r$ 值，即 $\text{Add}(\text{Multi}(u, G), \text{Multi}(v, P))[0]$ ；
 
-$$ R_{\text{forge}} \leftarrow \text{Add}(\text{Multi}(u, G), \text{Multi}(v, P)) $$
+$$
+R_{\text{forge}} \leftarrow \text{Add}(\text{Multi}(u, G), \text{Multi}(v, P))
+$$
 
 $$ r_{\text{forge}} \leftarrow R_{\text{forge}}[0] $$
 
