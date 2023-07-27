@@ -1,5 +1,8 @@
 # 实现方式
 ## 总体概述
+<div align="center">
+  <img src="https://github.com/Ljm200301/ljm/blob/main/pictures/sm2_2P_decrypt.png">
+</div>
 
 ## sm2_2P_decrypt_A
 在sm2_2P_decrypt_A中，实现了一种基于SM2算法的加密通信过程，其主要流程如下：
