@@ -5,7 +5,7 @@ Rho方法的基本思路是选择一个随机数作为起点，然后使用哈�
   <img src="https://github.com/Ljm200301/ljm/blob/main/pictures/rho.png">
 </div>
 
-在具体实现的过程中，使用了OpenSSL库提供的EVP_MD_CTX结构体和EVP_Digest函数来进行SM3哈希计算。**主要寻找碰撞的过程如下：**  
+在具体实现的过程中，使用了**OpenSSL库**提供的EVP_MD_CTX结构体和EVP_Digest函数来进行SM3哈希计算。**主要寻找碰撞的过程如下：**  
 - 定义了四个长度为32的unsigned char数组out1、out2、out3和out4，用于存储哈希函数的输出结果。  
 - 使用EVP_Digest函数对data数组进行SM3哈希计算，将结果存储在out1数组中。  
 - 使用EVP_Digest函数对out1数组进行SM3哈希计算，将结果存储在out2数组中。
