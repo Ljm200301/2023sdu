@@ -1,6 +1,10 @@
 # 实现方式
 ## 长度扩展攻击
 长度扩展攻击利用哈希算法的长度扩展特性,即知道原始消息的哈希值、长度和填充后长度,就可以计算出任意长度扩展消息的哈希值。
+<div align="center">
+  <img src="https://github.com/Ljm200301/ljm/blob/main/pictures/sm3la.png">
+</div>
+
 ## 代码分析
 代码中具体做以下事情:
 - 计算原始消息message1的SM3哈希值,存储在hash数组中
