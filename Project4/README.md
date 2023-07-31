@@ -1,13 +1,11 @@
 # 实现方式
 利用SIMD优化SM3，按照ppt中所讲进行优化，测试100000次哈希所用时间
 
-<div style="margin: 0 auto;">  
-
 | 未优化SM3 | SIMD优化SM3 | 优化百分比 |
 |:--|:--|:--|
 | 1990.45ms | 1350.44ms | 32% |
 
-</div>
+
 
 主要优化点集中在:
 
@@ -43,8 +41,11 @@
 
 
 
-
 # 实现效果
+| 未优化SM3 | SIMD优化SM3 | 优化百分比 |
+|:--|:--|:--|
+| 1990.45ms | 1350.44ms | 32% |
+
 <div align="center">
   <img src="https://github.com/Ljm200301/ljm/blob/main/pictures/optimize_SM3.png">
 </div>
