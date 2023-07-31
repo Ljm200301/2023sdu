@@ -14,4 +14,4 @@
 
 - 主函数中先计算message1的哈希值,然后调用length_extension_attack实现长度扩展攻击,计算message3的哈希值
 # 实现效果
-
+length_extension_attack.png
