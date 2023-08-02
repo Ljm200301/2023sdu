@@ -13,30 +13,31 @@
 
 验证过程中，`bob()` 函数首先使用哈希函数将 `p` 迭代哈希 `d_1` 次，得到哈希值 `c_prime`。然后，使用公钥对 `sig_c` 和 `c_prime` 进行验证。如果验证成功，即 Alice 的证明是有效的，则输出 "Alice's proof is valid."；否则输出 "Alice's proof is invalid."。
 
-Alice (born 1978) wants to prove to Bob that her age $>$ 21. Rely on trusted issuer, proof system need to be useable until 2100. Suppose this year is 2021.
+Alice（出生于1978年）想向Bob证明她的年龄 $>$ 21。依赖于可用于2100年的可信发行人，证明系统需要使用以下步骤：
 
-Trusted Issuer:
+可信发行人：
 
 \begin{itemize}
-\item Pick 128-bit random seed, compute $s=H_0(\text{seed})$
-\item $k=2100-1978$, $c=H_1^k(s)$, sign over $c$ as $sig_c$
+\item 选择128位随机种子，计算 $s=H_0(\text{seed})$
+\item $k=2100-1978$，$c=H_1^k(s)$，签署 $c$ 为 $sig_c$
 \end{itemize}
 
-Give Alice $s$ and $sig_c$
+给予Alice $s$ 和 $sig_c$
 
-Alice prove her age $\geq 21$ to Bob:
+Alice向Bob证明她的年龄 $\geq 21$：
+
 \begin{itemize}
-\item E.g., she was born before 2000
-\item Compute $d_0=2000-1978=22$, compute proof $p=H_1^{d0}(s)$
-\item Give Bob $(p,sig_c)$
+\item 例如，她出生在2000年以前
+\item 计算 $d_0=2000-1978=22$，计算证明 $p=H_1^{d0}(s)$
+\item 将 $(p,sig_c)$ 给予Bob
 \end{itemize}
 
-Bob verify Alice’s proof:
+Bob验证Alice的证明：
+
 \begin{itemize}
-\item Compute $d_1=2100-2000=100$
-\item Compute $c' = H_1^{d1}(p)$, check $sig_c$ is for $c'$
+\item 计算 $d_1=2100-2000=100$
+\item 计算 $c' = H_1^{d1}(p)$，检查 $sig_c$ 是否为 $c'$ 的签名
 \end{itemize}
-
 # 实现效果
 <div align="center">
   <img src="https://github.com/Ljm200301/ljm/blob/main/pictures/Project6.png">
