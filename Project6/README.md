@@ -16,6 +16,7 @@
 Alice (born 1978) wants to prove to Bob that her age $>$ 21. Rely on trusted issuer, proof system need to be useable until 2100. Suppose this year is 2021.
 
 Trusted Issuer:
+
 \begin{itemize}
 \item Pick 128-bit random seed, compute $s=H_0(\text{seed})$
 \item $k=2100-1978$, $c=H_1^k(s)$, sign over $c$ as $sig_c$
